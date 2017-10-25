@@ -1,17 +1,18 @@
 %-------------------------------------------------------------------------------
-% Template Skripsi untuk JTETI FT UGM
+% Template Skripsi STTNF
 %
-% Dibuat oleh @gunturdputra TE09
+% Dibuat oleh @herpiko 
+% Yang di-fork dari templat milik @gunturdputra TE09
 % Hasil fork dari file asli Pak Pekik Nurwantoro FMIPA
 % dan Mas Yohan Fajar Sidik TE08
 % Silakan digunakan dan diedit seperlunya, semoga bermanfaat
 %
-% (c) 2013-2014
+% (c) 2013-2017
 %-------------------------------------------------------------------------------
 
 \NeedsTeXFormat{LaTeX2e}
-%Created by Pekik Nurwantoro, Universitas Gadjah Mada, Yogyakarta, Indonesia
-\ProvidesClass{jtetiskripsi}
+%Originaly created by Pekik Nurwantoro, Universitas Gadjah Mada, Yogyakarta, Indonesia
+\ProvidesClass{sttnfskripsi}
 
 \RequirePackage[english,bahasa]{babel}
 \RequirePackage{indentfirst}
@@ -50,7 +51,7 @@
 \DeclareOption{inggris}{\@langindofalse\@langengtrue}
 
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{report}}
-\ExecuteOptions{jtetiskripsi,satusetengahspasi,indonesia}
+\ExecuteOptions{sttnfskripsi,satusetengahspasi,indonesia}
 \ProcessOptions
 \LoadClass[a4paper,12pt]{report}
 %\RequirePackage{natbib}
@@ -169,6 +170,8 @@
 \def\nomenclaturename{DAFTAR SINGKATAN}%
 \def\abstractname{Intisari}%
 \def\acknowledgmentname{HALAMAN PERSEMBAHAN}%
+\def\secondcovernam e{HALAMAN JUDUL}
+\def\noplagiatstatementname{PERNYATAAN ORISINALITAS}
 \def\approvalname{HALAMAN PENGESAHAN}
 \def\partname{BAGIAN}%
 \def\chaptername{BAB}%
@@ -204,9 +207,9 @@
 %------------------------------------------------------------]
 %Define thesis's inputs
 %------------------------------------------------------------
-\gdef\@university{Universitas Gadjah Mada}
-\gdef\@faculty{Fakultas Teknik}
-\gdef\@city{Yogyakarta}
+\gdef\@university{SEKOLAH TINGGI TERPADU NURUL FIKRI}
+\gdef\@faculty{Prodi Teknik Informatika}
+\gdef\@city{Depok}
 \newcommand{\titleind}[1]{\gdef\@titleind{#1}}
 \newcommand{\@titleind}{}
 \newcommand{\fullname}[1]{\gdef\@fullname{#1}}
@@ -237,6 +240,14 @@
 \newcommand{\@firstnip}{}
 \newcommand{\secondnip}[1]{\gdef\@secondnip{#1}}
 \newcommand{\@secondnip}{}
+\newcommand{\firstenemy}[1]{\gdef\@firstenemy{#1}}
+\newcommand{\@firstenemy}{}
+\newcommand{\secondenemy}[1]{\gdef\@secondenemy{#1}}
+\newcommand{\@secondenemy}{}
+\newcommand{\firstenemynip}[1]{\gdef\@firstenemynip{#1}}
+\newcommand{\@firstenemynip}{}
+\newcommand{\secondenemynip}[1]{\gdef\@secondenemynip{#1}}
+\newcommand{\@secondenemynip}{}
 
 %------------------------------------------------------------
 %Define cover in Indonesian
@@ -247,66 +258,138 @@
   \setcounter{page}{1}
     \begin{center}
       \begin{singlespace}
-      \fontsize{14pt}{16pt}\selectfont\MakeUppercase{\normalfont\bfseries\@titleind}\par\nobreak
-      \vspace{1.5cm}
-      \MakeUppercase{\normalfont\bfseries Skripsi}\\
-      \vspace{1.0cm}
-       \vfill
-       \includegraphics[width=0.5\textwidth]{gambar/logougm.png}
-       \vfill
+        \includegraphics[width=0.3\textwidth]{logosttnf.png}
+        \vfill
+        \fontsize{14pt}{16pt}\selectfont\MakeUppercase{\normalfont\bfseries\@university}\par\nobreak
+        \vfill
+        \fontsize{14pt}{16pt}\selectfont\MakeUppercase{\normalfont\bfseries\@titleind}\par\nobreak
+        \vspace{1.5cm}
+        \MakeUppercase{\normalfont\bfseries Skripsi}\\
+        \vspace{1.0cm}
+        \vfill
        {\normalfont
-        \bfseries Disusun oleh:\\
-        \MakeUppercase{\normalfont\bfseries\underline \@fullname}\\
+        \MakeUppercase{\normalfont\bfseries \@fullname}\\
         \MakeUppercase{\normalfont\bfseries \@idnum}}\\
        \vspace{1.5cm}
        {\normalfont 
-         \MakeUppercase{\normalfont\bfseries Jurusan \@dept}\\
-         \MakeUppercase{\normalfont\bfseries\@faculty} \MakeUppercase{\normalfont\bfseries\@university}\\
+         \MakeUppercase{\normalfont\bfseries Program Studi \@dept}\\
          \MakeUppercase{\normalfont\bfseries\@city}\\
          \vspace{0.5cm}
          {\normalfont\bfseries\@yearsubmit}}\\
       \end{singlespace}
       \end{center}
-}
+}   
 
+%------------------------------------------------------------
+% Second cover
+%------------------------------------------------------------
+\def\secondcover{%
+  \begin{center}
+    \begin{singlespace}
+        \includegraphics[width=0.3\textwidth]{logosttnf.png}
+      \vfill
+      \vspace{2.0cm}
+      \fontsize{14pt}{16pt}\selectfont\MakeUppercase{\normalfont\bfseries\@university}\par\nobreak
+      \vfill
+      \vspace{1.5cm}
+        \MakeUppercase{\normalfont\bfseries\@titleind}\par\nobreak
+      \vspace{1.0cm}
+        \MakeUppercase{\normalfont\bfseries\expandafter{Skripsi}}\\
+      \vspace{1.0cm}
+    Diajukan Sebagai Salah Satu Syarat untuk Memperoleh\\
+    Gelar Sarjana Komputer Program S-1\\
+      \vfill
+       \vspace{1.5cm}
+       {\normalfont
+        \MakeUppercase{\normalfont\bfseries \@fullname}\\
+        \MakeUppercase{\normalfont\bfseries \@idnum}}\\
+        \vspace{2.0cm}
+       {\normalfont 
+         \MakeUppercase{\normalfont\bfseries Program Studi \@dept}\\
+         \MakeUppercase{\normalfont\bfseries\@city}\\
+        \vspace{0.5cm}
+        {\normalfont\bfseries\@yearsubmit}}\\
+    \end{singlespace}
+    \vspace{3.0cm}
+  \end{center}
+\addcontentsline{toc}{chapter}{\secondcovername}
+}
+%------------------------------------------------------------
+%Noplagiat statement
+%------------------------------------------------------------
+\def\noplagiatstatement{%
+  \begin{singlespace}
+    \begin{center}
+      \fontsize{14pt}{16pt}\selectfont\MakeUppercase{\normalfont\bfseries{Halaman Pernyataan Orisinalitas}}\par\nobreak
+      
+    \end{center}
+    \vspace{1.0cm}
+ 
+  \centering\textbf{
+  Skripsi ini adalah hasil karya penulis,\\
+  dan semua sumber baik yang dikutip maupun dirujuk\\ 
+  telah saya nyatakan dengan benar.
+  }
+ 
+  \vspace{3.0cm}
+  \begin{flushleft}\textbf{
+  \hspace{4.0cm}Nama : {\normalfont\@fullname}\\
+  \vspace{0.5cm}
+  \hspace{4.0cm}NIM :\\
+  \vspace{0.5cm}
+  \hspace{4.0cm}Tanda tangan :\\
+  \vspace{0.5cm}
+  \hspace{4.0cm}Tanggal :\\
+  }
+  \end{flushleft}
+   \end{singlespace}
+   
+  \end{center}
+\addcontentsline{toc}{chapter}{\noplagiatstatementname}
+}
 %------------------------------------------------------------
 %Approval Page
 %------------------------------------------------------------
 \def\approvalpage{%
-  \chapter*{\approvalname}%
-  \begin{center}
-  \begin{doublespace}
-        \MakeUppercase{\normalfont\bfseries\@titleind}\par\nobreak
+  \begin{singlespace}
+    \begin{center}
+      \fontsize{14pt}{16pt}\selectfont\MakeUppercase{\normalfont\bfseries{Halaman Pengesahan}}\par\nobreak
+      
+    \end{center}
     \vspace{1.0cm}
-    \MakeUppercase{\normalfont\bfseries\expandafter{Skripsi}}\\
+  \begin{flushleft}
+  Skripsi ini diajukan oleh :\\
+    \vspace{0.5cm}
+  Nama : {\normalfont\@fullname}\\
+  NIM :\\
+  Program Studi :\\
+  Judul Skripsi :\\
+  \end{flushleft}
+ 
+  \justify 
+  Telah berhasil dipertahankan di hadapan Dewan Penguji dan diterima sebagai bagian dari persyaratan yang diperlukan untuk memperoleh gelar Sarjana Komputer pada Program Studi Teknik Informatika, Sekolah Tinggi Terpadu Nurul Fikri
+ 
+    \begin{center}
     \vspace{1.0cm}
-    Diajukan Sebagai Salah Satu Syarat untuk Memperoleh\\
-    Gelar Sarjana Teknik Program S-1\\
-    Pada Jurusan \@dept \ \@faculty \\
-    \@university
+    \textbf{DEWAN PENGUJI}\\
+    \vspace{1.0cm}
 
-    \vspace{1.0cm}
-    \textbf{Disusun oleh:}\\
-    \begin{singlespace}
-      \underline{\bfseries \@fullname}\\
-      \textbf{\@idnum}\\
-    \end{singlespace}
-    \vspace{1.0cm}
-    Telah disetujui dan disahkan\\
-    pada tanggal \@approvaldate
-    \vspace{1.0cm}
-
-    \begin{singlespace}
     \begin{tabular}{ccc}
-      Dosen Pembimbing I & & Dosen Pembimbing II \\
+      Pembimbing I & & Pembimbing II \\
       \vspace{1cm} & \vspace{1cm} & \vspace{1cm}\\
       \textbf{\underline{\@firstsupervisor}}& &
       \textbf{\underline{\@secondsupervisor}} \\
       \bfseries NIP. \@firstnip & & \bfseries NIP. \@secondnip    
     \end{tabular}
+    \vspace{2.0cm}
+    \begin{tabular}{ccc}
+      Penguji I & & Penguji II \\
+      \vspace{1cm} & \vspace{1cm} & \vspace{1cm}\\
+      \textbf{\underline{\@firstenemy}}& &
+      \textbf{\underline{\@secondenemy}} \\
+      \bfseries NIP. \@firstenemynip & & \bfseries NIP. \@secondenemynip    
+    \end{tabular}
     \end{singlespace}
-
-  \end{doublespace}
   \end{center}
 \addcontentsline{toc}{chapter}{\approvalname}
 }
